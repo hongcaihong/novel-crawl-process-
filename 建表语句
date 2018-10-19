@@ -1,0 +1,73 @@
+| nv_site | CREATE TABLE `nv_site` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `siteName` varchar(100) NOT NULL DEFAULT '' COMMENT '网站名称',
+  `siteUrl` varchar(100) NOT NULL DEFAULT '' COMMENT '网站url',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `siteName` (`siteName`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='存储小说站点列表'
+
+
+| nv_books | CREATE TABLE `nv_books` (
+  `bookId` int(11) NOT NULL AUTO_INCREMENT,
+  `siteId` int(11) NOT NULL DEFAULT '0' COMMENT '站点id',
+  `siteBookId` varchar(100) NOT NULL DEFAULT '' COMMENT '该书在网站的编号',
+  `bookName` varchar(100) NOT NULL DEFAULT '' COMMENT '书名',
+  `author` varchar(20) NOT NULL DEFAULT '' COMMENT '作者',
+  `bookUrl` varchar(200) NOT NULL DEFAULT '' COMMENT '书籍链接',
+  `types` varchar(50) NOT NULL DEFAULT '' COMMENT '分类',
+  `channel` tinyint(4) NOT NULL DEFAULT '0' COMMENT '性别分类 0:未知 1:男生 2:女生',
+  `words` varchar(50) NOT NULL DEFAULT '' COMMENT '字数',
+  `finish` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否完结，0未完结,1完结',
+  `publishTime` varchar(19) NOT NULL DEFAULT '' COMMENT '首发时间',
+  `info` text COMMENT '简介',
+  `cover` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图',
+  `hero` varchar(100) NOT NULL DEFAULT '' COMMENT '主角列表',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`bookId`),
+  UNIQUE KEY `siteId` (`siteId`,`siteBookId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='小说基础信息'
+
+| nv_books | CREATE TABLE `nv_books` (
+  `bookId` int(11) NOT NULL AUTO_INCREMENT,
+  `siteId` int(11) NOT NULL DEFAULT '0' COMMENT '站点id',
+  `siteBookId` varchar(100) NOT NULL DEFAULT '' COMMENT '该书在网站的编号',
+  `bookName` varchar(100) NOT NULL DEFAULT '' COMMENT '书名',
+  `author` varchar(20) NOT NULL DEFAULT '' COMMENT '作者',
+  `bookUrl` varchar(200) NOT NULL DEFAULT '' COMMENT '书籍链接',
+  `types` varchar(50) NOT NULL DEFAULT '' COMMENT '分类',
+  `channel` tinyint(4) NOT NULL DEFAULT '0' COMMENT '性别分类 0:未知 1:男生 2:女生',
+  `words` varchar(50) NOT NULL DEFAULT '' COMMENT '字数',
+  `finish` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否完结，0未完结,1完结',
+  `publishTime` varchar(19) NOT NULL DEFAULT '' COMMENT '首发时间',
+  `info` text COMMENT '简介',
+  `cover` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图',
+  `hero` varchar(100) NOT NULL DEFAULT '' COMMENT '主角列表',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`bookId`),
+  UNIQUE KEY `siteId` (`siteId`,`siteBookId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='小说基础信息'
+
+| nv_books | CREATE TABLE `nv_books` (
+  `bookId` int(11) NOT NULL AUTO_INCREMENT,
+  `siteId` int(11) NOT NULL DEFAULT '0' COMMENT '站点id',
+  `siteBookId` varchar(100) NOT NULL DEFAULT '' COMMENT '该书在网站的编号',
+  `bookName` varchar(100) NOT NULL DEFAULT '' COMMENT '书名',
+  `author` varchar(20) NOT NULL DEFAULT '' COMMENT '作者',
+  `bookUrl` varchar(200) NOT NULL DEFAULT '' COMMENT '书籍链接',
+  `types` varchar(50) NOT NULL DEFAULT '' COMMENT '分类',
+  `channel` tinyint(4) NOT NULL DEFAULT '0' COMMENT '性别分类 0:未知 1:男生 2:女生',
+  `words` varchar(50) NOT NULL DEFAULT '' COMMENT '字数',
+  `finish` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否完结，0未完结,1完结',
+  `publishTime` varchar(19) NOT NULL DEFAULT '' COMMENT '首发时间',
+  `info` text COMMENT '简介',
+  `cover` varchar(100) NOT NULL DEFAULT '' COMMENT '封面图',
+  `hero` varchar(100) NOT NULL DEFAULT '' COMMENT '主角列表',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`bookId`),
+  UNIQUE KEY `siteId` (`siteId`,`siteBookId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='小说基础信息'
