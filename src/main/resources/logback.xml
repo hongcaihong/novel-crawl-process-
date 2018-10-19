@@ -1,0 +1,34 @@
+<configuration>
+    <!--LBLogger工具类里面读取的配置项 start-->
+    <property name="HOME_PATH" value="/data0/novelCrawlLog/logs" scope="CONTEXT"/>
+    <property name="FILE_PREFIX" value="ad-" scope="CONTEXT"/>
+    <property name="FILE_SUFFIX" value=".log" scope="CONTEXT"/>
+    <property name="FILE_SUFFIX_WITH_PATTERN" value=".log-%d{yyyy-MM-dd}" scope="CONTEXT"/>
+    <property name="FILE_CONTENT_FORMAT" value="%d{yyyy-MM-dd HH:mm:ss}->%file:%line->%level->%msg%n" scope="CONTEXT"/>
+    <property name="MAX_HISTORY_SIZE" value="2" scope="CONTEXT"/>
+    <property name="MAX_FILE_SIZE" value="512 mb" scope="CONTEXT"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+	<appender name="mysql" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${HOME_PATH}/${FILE_PREFIX}mysql${FILE_SUFFIX_WITH_PATTERN}</FileNamePattern>
+			<MaxHistory>${MAX_HISTORY_SIZE}</MaxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${FILE_CONTENT_FORMAT}</pattern>
+		</layout>
+	</appender>
+
+	<!--<logger name="com.dataeye.ad.adjob.service" level="DEBUG">
+		<appender-ref ref="mysql"/>
+	</logger>-->
+
+    <logger name="org.springframework.web" level="INFO"/>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

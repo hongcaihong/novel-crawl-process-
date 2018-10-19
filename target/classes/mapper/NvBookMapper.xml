@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dataeye.novel.mapper.NvBookMapper">
+    <insert id="insertOrUpdateNvBook">
+        INSERT INTO nv_books(
+        <trim suffixOverrides=",">
+            siteId,siteBookId,
+            <if test="bookName != null and bookName != ''">
+                bookName,
+            </if>
+            <if test="author != null and author != ''">
+                author,
+            </if>
+            <if test="bookUrl != null and bookUrl != ''">
+                bookUrl,
+            </if>
+            <if test="types != null and types != ''">
+                types,
+            </if>
+            <if test="words != null and words != ''">
+                words,
+            </if>
+            <if test="channel != null">
+                channel,
+            </if>
+            <if test="finish != null">
+                finish,
+            </if>
+            <if test="publishTime != null and publishTime != ''">
+                publishTime,
+            </if>
+            <if test="info != null and info != ''">
+                info,
+            </if>
+            <if test="cover != null and cover != ''">
+                cover,
+            </if>
+            <if test="hero != null and hero != ''">
+                hero,
+            </if>
+        </trim>
+        )VALUES (
+        <trim suffixOverrides=",">
+            #{siteId},#{siteBookId},
+            <if test="bookName != null and bookName != ''">
+                #{bookName},
+            </if>
+            <if test="author != null and author != ''">
+                #{author},
+            </if>
+            <if test="bookUrl != null and bookUrl != ''">
+                #{bookUrl},
+            </if>
+            <if test="types != null and types != ''">
+                #{types},
+            </if>
+            <if test="words != null and words != ''">
+                #{words},
+            </if>
+            <if test="channel != null">
+                #{channel},
+            </if>
+            <if test="finish != null">
+                #{finish},
+            </if>
+            <if test="publishTime != null and publishTime != ''">
+                #{publishTime},
+            </if>
+            <if test="info != null and info != ''">
+                #{info},
+            </if>
+            <if test="cover != null and cover != ''">
+                #{cover},
+            </if>
+            <if test="hero != null and hero != ''">
+                #{hero},
+            </if>
+        </trim>
+        ) ON DUPLICATE KEY UPDATE
+        <if test="words != null and words != ''">
+            words=#{words},
+        </if>
+        <if test="finish != null">
+            finish=#{finish},
+        </if>
+        updateTime=now()
+    </insert>
+
+    <insert id="insertOrUpdateNvBookUpdate">
+        INSERT INTO nv_books_update(
+        <trim suffixOverrides=",">
+            bookId,
+            <if test="lastUpdateTime != null and lastUpdateTime != ''">
+                lastUpdateTime,
+            </if>
+            <if test="chapterNum!=null">
+                chapterNum,
+            </if>
+            <if test="clickNum!=null">
+                clickNum,
+            </if>
+            <if test="vipNum!=null">
+                vipNum,
+            </if>
+            <if test="rewardNum!=null">
+                rewardNum,
+            </if>
+        </trim>
+        )VALUES (
+        <trim suffixOverrides=",">
+            #{bookId},
+            <if test="lastUpdateTime != null and lastUpdateTime != ''">
+                #{lastUpdateTime},
+            </if>
+            <if test="chapterNum!=null">
+                #{chapterNum},
+            </if>
+            <if test="clickNum!=null">
+                #{clickNum},
+            </if>
+            <if test="vipNum!=null">
+                #{vipNum},
+            </if>
+            <if test="rewardNum!=null">
+                #{rewardNum},
+            </if>
+        </trim>
+        ) ON DUPLICATE KEY UPDATE
+        <if test="lastUpdateTime != null and lastUpdateTime != ''">
+            lastUpdateTime = #{lastUpdateTime},
+        </if>
+        <if test="chapterNum!=null">
+            chapterNum = #{chapterNum},
+        </if>
+        <if test="clickNum!=null">
+            clickNum = #{clickNum},
+        </if>
+        <if test="vipNum!=null">
+            vipNum = #{vipNum},
+        </if>
+        <if test="rewardNum!=null">
+            rewardNum =#{rewardNum},
+        </if>
+        updateTime=now()
+    </insert>
+
+
+    <insert id="insertOrUpdateNvBookChapter">
+        INSERT INTO ${tableName} (bookId,title1,title2,chapterUrl,publishTime)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.bookId},#{item.title1},#{item.title2},#{item.chapterUrl},#{item.publishTime})
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        title1=VALUES(title1),title2=VALUES(title2),chapterUrl=VALUES(chapterUrl),publishTime=VALUES(publishTime)
+    </insert>
+</mapper>
